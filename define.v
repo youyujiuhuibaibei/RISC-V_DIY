@@ -52,7 +52,7 @@
 `define funct3_sh       0x1
 `define funct3_sw       0x2
 
-//typr_B
+//type_B
 `define opcode_B        1100011
 
 `define funct3_beq      0x0
