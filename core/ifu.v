@@ -2,7 +2,10 @@
 
 module ifu (
 input clk,
-input rst_n
+input rst_n,
+output [31:0] Inst_addr,
+input [31:0] Inst_in,
+output [31:0] Inst_out
 );
 
 reg [31:0] PC;//程序计数器
@@ -19,12 +22,8 @@ end
 
 //与指令缓存连接
 
-Inst_mem u_Inst_mem(
-    .clk   (clk   ),
-    .rst_n (rst_n ),
-    .addr  (addr  ),
-    .Inst  (Inst  )
-);
+assign Inst_addr = PC;
 
+assign Inst_out = Inst_in;
 
 endmodule
