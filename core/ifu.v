@@ -3,9 +3,9 @@
 module ifu (
 input clk,
 input rst_n,
-output [31:0] Inst_addr,
-input [31:0] Inst_in,
-output [31:0] Inst_out
+output [31:0] Inst_addr,//与指令ram连接
+input [31:0] Inst_in,//与指令ram连接
+output [31:0] Inst_out//输出取到的指令
 );
 
 reg [31:0] PC;//程序计数器
