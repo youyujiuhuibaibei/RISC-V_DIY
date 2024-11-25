@@ -10,7 +10,11 @@ input [2:0] funct3,
 input [6:0] funct7,
 input [31:0] PC,
 output [31:0] alu_out,
-output B_result
+output B_result,
+output [6:0] opcode_o,
+output [2:0] funct3_o,
+output [6:0] funct7_o,
+output [4:0] rd_o
 );
 
 wire [31:0] alu_add;
@@ -51,6 +55,11 @@ reg B_result_r;
 
 assign alu_out = alu_r;
 assign B_result = B_result_r;
+
+assign opcode_o = opcode;
+assign funct3_o = funct3;
+assign funct7_o = funct7;
+assign rd_o = rd;
 
 // reg [31:0] op_1;//操作数1
 // reg [31:0] op_2;//操作数2
