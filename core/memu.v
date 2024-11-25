@@ -12,9 +12,13 @@ output [31:0] Data_addr,//与数据ram连接
 input [31:0] Data_in,//与数据ram连接
 output [31:0] Data_out,//与数据ram连接
 output we,//写使能，与数据ram连接
-output [1:0] wa,//用于区分写入的字节是几个byte
-output [31:0] load_out//输出取到的数据
-
+output [1:0] wa,//用于区分写入的字节是几个byte，与数据ram相连
+output [31:0] load_out,//输出取到的数据
+output [31:0] alu_out_o,
+output [6:0] opcode_o,
+output [2:0] funct3_o,
+output [6:0] funct7_o,
+output [4:0] rd_o
 );
 
 reg [31:0] load_out_r;
@@ -23,6 +27,11 @@ reg [1:0] wa_r;
 
 assign Data_addr = alu_out;
 assign load_out = load_out_r;
+assign alu_out_o = alu_out;
+assign opcode_o = opcode;
+assign funct3_o = funct3;
+assign funct7_o = funct7;
+assign rd_o = rd;
 
 //load指令
 always @(*) begin
