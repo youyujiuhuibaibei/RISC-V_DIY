@@ -1,6 +1,6 @@
 //指令分类
 //type_R
-`define opcode_R        0110011
+`define opcode_R        7'b0110011//0x33
 
 `define funct3_add      3'h0 //f3一样
 `define funct3_sub      3'h0 //
@@ -37,7 +37,7 @@
 
 
 //type_I
-`define opcode_I_lg     0010011
+`define opcode_I_lg     7'b0010011//0x13
 
 `define funct3_addi     3'h0
 `define funct3_xori     3'h4
@@ -59,7 +59,7 @@
 // `define ALUopcode_slti  0x11
 // `define ALUopcode_sltui 0x12
 
-`define opcode_I_ld     0000011
+`define opcode_I_ld     7'b0000011//0x03
 
 `define funct3_lb       3'h0
 `define funct3_lh       3'h1
@@ -74,7 +74,7 @@
 // `define ALUopcode_lhu      0x17
 
 //type_S
-`define opcode_S        0100011
+`define opcode_S        7'b0100011//0x23
 
 `define funct3_sb       3'h0
 `define funct3_sh       3'h1
@@ -85,7 +85,7 @@
 // `define ALUopcode_sw       0x20
 
 //type_B
-`define opcode_B        1100011
+`define opcode_B        7'b1100011//0x63
 
 `define funct3_beq      3'h0
 `define funct3_bne      3'h1
@@ -102,20 +102,20 @@
 // `define ALUopcode_bgeu     0x2f
 
 //type_U
-`define opcode_U_lui    0110111
+`define opcode_U_lui    7'b0110111//0x37
 
 //`define ALUopcode_U_lui     0x30
 
-`define opcode_U_auipc  0010111
+`define opcode_U_auipc  7'b0010111//0x17
 
 //`define ALUopcode_U_auipc     0x31
 
 //type_J
-`define opcode_J_jal    1101111
+`define opcode_J_jal    7'b1101111//0x6f
 
 //`define ALUopcode_J_jal     0x32
 
-`define opcode_J_jalr   1100111
+`define opcode_J_jalr   7'b1100111//0x67
 
 
 //`define ALUopcode_J_jalr     0x33

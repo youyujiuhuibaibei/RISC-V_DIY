@@ -30,7 +30,7 @@ reg [31:0] imm_ext_r;
 reg [5:0] ALUop_r;
 
 assign opcode = Inst[6:0];
-assign funct3 = Inst[11:7];
+assign funct3 = Inst[14:12];
 assign funct7 = Inst[31:25];
 
 //获取rs1,rs2,rd
@@ -76,7 +76,7 @@ always @(*) begin
         `opcode_J_jalr: begin//type_J_jalr，无条件跳转+寄存器寻址
             imm_ext_r <= imm_ext_J;
         end
-        default: imm_ext_r <= 0;
+        default: imm_ext_r <= 32'h0;
     endcase
 end
 
