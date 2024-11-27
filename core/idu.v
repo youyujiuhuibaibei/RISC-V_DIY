@@ -80,6 +80,8 @@ always @(*) begin
     endcase
 end
 
-
+//从regs获取rs1_data与rs2_data
+assign rs1_data_o = rs1_data_i;
+assign rs2_data_o = rs2_data_i;
 
 endmodule
