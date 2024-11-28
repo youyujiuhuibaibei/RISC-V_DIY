@@ -3,6 +3,7 @@
 module cpu_top (
     input clk,
     input rst_n,
+    input rst_n_mem,
     input [31:0] Inst_addr_load,
     input [31:0] Inst_load,
     input load_en
@@ -73,7 +74,7 @@ assign Inst_addr_sel = load_en ? Inst_addr_load : Inst_addr;//用load_en来决�
 
 Inst_mem u_Inst_mem(
     .clk    (clk    ),
-    .rst_n  (rst_n  ),
+    .rst_n  (rst_n_mem  ),
     .addr   (Inst_addr   ),
     .Inst_i (Inst_load ),//指令只会从外部写入
     .Inst_o (Inst_mem2ifu ),//ifu-->Inst_mem
@@ -206,7 +207,7 @@ memu u_memu(
 
 Data_mem u_Data_mem(
     .clk    (clk    ),
-    .rst_n  (rst_n  ),
+    .rst_n  (rst_n_mem  ),
     .Data_i (Data_out_memu2Data_mem ),
     .addr   (Data_addr_memu2Data_mem   ),
     .we     (we_memu2Data_mem     ),
