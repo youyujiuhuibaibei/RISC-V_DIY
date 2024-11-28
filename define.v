@@ -119,3 +119,8 @@
 
 
 //`define ALUopcode_J_jalr     0x33
+
+`define nop             32'b000000000000_00000_000_00000_0010011
+`define opcode_nop      7'b0010011
+`define funct3_nop      3'b000
+`define funct7_nop      7'b0000000

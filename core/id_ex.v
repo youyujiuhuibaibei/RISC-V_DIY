@@ -27,9 +27,9 @@ always @(posedge clk or negedge rst_n) begin
         imm_ext_o <= 0;
         rs1_data_o <= 0;
         rs2_data_o <= 0;
-        opcode_o <= 0;
-        funct3_o <= 0;
-        funct7_o <= 0;
+        opcode_o <= `opcode_nop;
+        funct3_o <= `funct3_nop;
+        funct7_o <= `funct7_nop;
         PC_o <= 0;
     end else begin
         rd_o <= rd_i;
