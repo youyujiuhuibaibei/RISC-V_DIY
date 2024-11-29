@@ -54,6 +54,8 @@ always @(*) begin
             end 
             default: load_out_r <= Data_in;
         endcase
+    end else begin
+        load_out_r <= 0;
     end
 end
 

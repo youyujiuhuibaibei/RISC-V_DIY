@@ -34,6 +34,7 @@ always @(posedge clk or negedge rst_n) begin
         opcode_o <= opcode_i;
         funct3_o <= funct3_i;
         funct7_o <= funct7_i;
+        rd_o <= rd_i;
         rs2_data_o <= rs2_data_i;
     end
 end

@@ -1,4 +1,18 @@
-`include "../define.v"
+`include "core_header.vh"
+// `include "../define.v"
+// `include "Data_mem.v"
+// `include "Inst_mem.v"
+// `include "ifu.v"
+// `include "if_id.v"
+// `include "idu.v"
+// `include "id_ex.v"
+// `include "exu.v"
+// `include "ex_mem.v"
+// `include "memu.v"
+// `include "mem_wb.v"
+// `include "wbu.v"
+// `include "regs.v"
+
 
 module cpu_top (
     input clk,
@@ -75,7 +89,7 @@ assign Inst_addr_sel = load_en ? Inst_addr_load : Inst_addr;//用load_en来决�
 Inst_mem u_Inst_mem(
     .clk    (clk    ),
     .rst_n  (rst_n_mem  ),
-    .addr   (Inst_addr   ),
+    .addr   (Inst_addr_sel   ),
     .Inst_i (Inst_load ),//指令只会从外部写入
     .Inst_o (Inst_mem2ifu ),//ifu-->Inst_mem
     .wr_en  (load_en  )

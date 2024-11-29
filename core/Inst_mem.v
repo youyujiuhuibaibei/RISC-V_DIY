@@ -19,7 +19,7 @@ assign Inst_o = {inst_mem[addr+3],inst_mem[addr+2],inst_mem[addr+1],inst_mem[add
 //同步写入
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n)begin
-        for(i=0;i<1023;i=i+1)begin
+        for(i=0;i<1024;i=i+1)begin
             inst_mem[i] <= 0;
         end
     end

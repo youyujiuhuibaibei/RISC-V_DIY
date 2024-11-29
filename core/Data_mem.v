@@ -20,7 +20,7 @@ assign Data_o = data_mem[addr];
 //同步写入
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n)begin//复位清零
-        for(i=0;i<1023;i=i+1)begin
+        for(i=0;i<1024;i=i+1)begin
             data_mem[i] <= 0;
         end
     end else if(we) begin
