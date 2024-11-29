@@ -1,0 +1,35 @@
+add x5 x1 x2          
+sub x6 x3 x4          
+xor x7 x1 x2          
+or x8 x3 x4           
+and x9 x5 x6          
+sll x10 x1 x2         
+srl x11 x3 x4         
+sra x12 x5 x6         
+slt x13 x1 x2         
+sltu x14 x3 x4        
+addi x15 x1 10        
+xori x16 x2 -1        
+ori x17 x3 0xFF       
+andi x18 x4 0x0F      
+slti x19 x5 20        
+sltiu x20 x6 30       
+lb x21 x7 4          
+lh x22 x8 -8         
+lw x23 x9 0          
+lbu x24 x10 4        
+lhu x25 x11 0        
+jalr x26 x12 8       
+sb x1 x13 4          
+sh x2 x14 -8        
+sw x3 x15 0           
+beq x1 x2 8           
+bne x3 x4 -4          
+blt x5 x6 12          
+bge x7 x8 -8          
+bltu x9 x10 16        
+bgeu x11 x12 -12      
+lui x13 0x12345        
+auipc x14 0x67890     
+jal x15 256            
+nop                    
