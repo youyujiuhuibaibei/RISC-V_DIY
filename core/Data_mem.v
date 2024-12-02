@@ -14,7 +14,7 @@ reg [7:0] data_mem [1023:0];
 integer i;
 
 //异步读取
-assign Data_o = data_mem[addr];
+assign Data_o = {data_mem[addr+3],data_mem[addr+2],data_mem[addr+1],data_mem[addr]};
 
 
 //同步写入

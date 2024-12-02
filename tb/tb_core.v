@@ -32,7 +32,7 @@ initial begin
             Inst_file[i] = 32'b0;
         end
     //$readmemh("D:/work/diycore/tb/Inst_file.txt",Inst_file);
-    $readmemh("D:/work/diycore/tb/test_load.txt",Inst_file);
+    $readmemh("D:/work/diycore/asm/output.txt",Inst_file);
     #20
     rst_n_mem = 1;
     //#5

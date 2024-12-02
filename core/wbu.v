@@ -15,7 +15,7 @@ output [31:0] rd_data//与寄存器组相连
 
 //reg [31:0] rd_data_r;
 reg wr_en_r;
-reg rd_data_r;
+reg [31:0] rd_data_r;
 
 assign rd_data = rd_data_r;
 assign rd_o = rd_i;

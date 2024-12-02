@@ -39,6 +39,12 @@ wire [31:0] alu_srai;
 wire [31:0] alu_slti;
 wire [31:0] alu_sltiu;
 
+wire [31:0] alu_lb;
+wire [31:0] alu_lh;
+wire [31:0] alu_lw;
+wire [31:0] alu_lbu;
+wire [31:0] alu_lhu;
+
 wire [31:0] alu_sb;
 wire [31:0] alu_sh;
 wire [31:0] alu_sw;
@@ -50,6 +56,9 @@ wire [31:0] alu_comp_u;
 
 wire [31:0] alu_lui;
 wire [31:0] alu_auipc;
+
+wire [31:0] alu_jal;
+wire [31:0] alu_jalr;
 
 reg [31:0] alu_r;
 reg B_result_r;

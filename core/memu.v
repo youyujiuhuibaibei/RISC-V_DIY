@@ -65,14 +65,20 @@ assign Data_out = rs2_data;
 always @(*) begin
     if (opcode==`opcode_S) begin
         we_r <= 1;
-        case (funct3)
-            `funct3_sb:wa_r <= 0;
-            `funct3_sh:wa_r <= 1;
-            `funct3_sw:wa_r <= 2;
-            default: wa_r <= 2;
-        endcase
     end else
         we_r <= 0;
 end
+
+always @(*) begin
+    case (funct3)
+        `funct3_sb:wa_r <= 0;
+        `funct3_sh:wa_r <= 1;
+        `funct3_sw:wa_r <= 2;
+        default: wa_r <= 2;
+    endcase
+end
+
+assign we = we_r;
+assign wa = wa_r;
 
 endmodule
