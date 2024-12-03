@@ -39,7 +39,7 @@ wire [31:0] imm_ext_idu2id_ex;
 wire [31:0] rs1_data_idu2id_ex;
 wire [31:0] rs2_data_idu2id_ex;
 wire [6:0] opcode_idu2id_ex;
-wire [3:0] funct3_idu2id_ex;
+wire [2:0] funct3_idu2id_ex;
 wire [6:0] funct7_idu2id_ex;
 wire [4:0] rd_wbu2regs;
 wire wr_en_wbu2regs;
@@ -52,6 +52,8 @@ wire [6:0] opcode_id_ex2exu   ;
 wire [2:0] funct3_id_ex2exu   ;
 wire [6:0] funct7_id_ex2exu   ;
 wire [31:0] PC_id_ex2exu       ;
+wire [4:0] rs1_id_ex2exu;
+wire [4:0] rs2_id_ex2exu;
 wire [31:0] alu_out_exu2ex_mem    ;
 wire B_result_exu2ex_mem   ;
 wire [6:0] opcode_exu2ex_mem   ;
@@ -66,6 +68,7 @@ wire [2:0] funct3_ex_mem2memu   ;
 wire [6:0] funct7_ex_mem2memu   ;
 wire [4:0] rd_ex_mem2memu       ;
 wire [31:0] rs2_data_ex_mem2memu ;
+wire [31:0] rd_data_ex_mem2ex;
 wire [31:0] Data_addr_memu2Data_mem ;
 wire [31:0] Data_in_Data_mem2memu   ;
 wire [31:0] Data_out_memu2Data_mem  ;
@@ -83,6 +86,9 @@ wire [2:0] funct3_mem_wb2wbu   ;
 wire [6:0] funct7_mem_wb2wbu   ;
 wire [31:0] load_out_mem_wb2wbu ;
 wire [4:0] rd_mem_wb2wbu       ;
+wire [31:0] rd_data_mem_wb2exu;
+wire [4:0] rd_wbbuf2exu;
+wire [31:0] rd_data_wbbuf2exu;
 
 assign Inst_addr_sel = load_en ? Inst_addr_load : Inst_addr;//用load_en来决定是从外部加载指令还是从ram中取指令到cpu
 
@@ -151,6 +157,8 @@ id_ex u_id_ex(
     .funct3_i   (funct3_idu2id_ex   ),
     .funct7_i   (funct7_idu2id_ex   ),
     .PC_i       (PC_if_id2id_ex       ),
+    .rs1_i      (rs1_idu2regs),         //用于给exu进行旁路输入判决
+    .rs2_i      (rs2_idu2regs),         //用于给exu进行旁路输入判决
     .rd_o       (rd_id_ex2exu       ),
     .imm_ext_o  (imm_ext_id_ex2exu  ),
     .rs1_data_o (rs1_data_id_ex2exu ),
@@ -158,7 +166,9 @@ id_ex u_id_ex(
     .opcode_o   (opcode_id_ex2exu   ),
     .funct3_o   (funct3_id_ex2exu   ),
     .funct7_o   (funct7_id_ex2exu   ),
-    .PC_o       (PC_id_ex2exu       )
+    .PC_o       (PC_id_ex2exu       ),
+    .rs1_o      (rs1_id_ex2exu),
+    .rs2_o      (rs2_id_ex2exu)
 );
 
 exu u_exu(
@@ -166,6 +176,14 @@ exu u_exu(
     .imm_ext    (imm_ext_id_ex2exu    ),
     .rs1_data   (rs1_data_id_ex2exu   ),
     .rs2_data   (rs2_data_id_ex2exu   ),
+    .rs1        (rs1_id_ex2exu),
+    .rs2        (rs2_id_ex2exu),
+    .rd_ex_mem  (rd_ex_mem2memu),
+    .rd_data_ex_mem (rd_data_ex_mem2ex),
+    .rd_mem_wb  (rd_mem_wb2wbu),
+    .rd_data_mem_wb(rd_data_mem_wb2exu),
+    .rd_wbbuf  (rd_wbbuf2exu),
+    .rd_data_wbbuf(rd_data_wbbuf2exu),
     .opcode     (opcode_id_ex2exu     ),
     .funct3     (funct3_id_ex2exu     ),
     .funct7     (funct7_id_ex2exu     ),
@@ -195,7 +213,8 @@ ex_mem u_ex_mem(
     .funct3_o   (funct3_ex_mem2memu   ),
     .funct7_o   (funct7_ex_mem2memu   ),
     .rd_o       (rd_ex_mem2memu       ),
-    .rs2_data_o (rs2_data_ex_mem2memu )
+    .rs2_data_o (rs2_data_ex_mem2memu ),
+    .rd_data    (rd_data_ex_mem2ex)
 );
 
 memu u_memu(
@@ -243,7 +262,8 @@ mem_wb u_mem_wb(
     .funct3_o   (funct3_mem_wb2wbu   ),
     .funct7_o   (funct7_mem_wb2wbu   ),
     .load_out_o (load_out_mem_wb2wbu ),
-    .rd_o       (rd_mem_wb2wbu       )
+    .rd_o       (rd_mem_wb2wbu       ),
+    .rd_data    (rd_data_mem_wb2exu)
 );
 
 wbu u_wbu(
@@ -256,6 +276,15 @@ wbu u_wbu(
     .rd_o     (rd_wbu2regs     ),
     .wr_en    (wr_en_wbu2regs    ),
     .rd_data  (rd_data_wbu2regs  )
+);
+
+wbu_o_buf u_wbu_o_buf(
+    .clk       (clk       ),
+    .rst_n     (rst_n     ),
+    .rd_i      (rd_wbu2regs      ),
+    .rd_data_i (rd_data_wbu2regs ),
+    .rd_o      (rd_wbbuf2exu      ),
+    .rd_data_o (rd_data_wbbuf2exu )
 );
 
 

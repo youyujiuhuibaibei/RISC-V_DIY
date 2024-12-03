@@ -9,6 +9,14 @@ input [6:0] opcode,
 input [2:0] funct3,
 input [6:0] funct7,
 input [31:0] PC,
+input [4:0] rs1,
+input [4:0] rs2,
+input [4:0] rd_ex_mem,
+input [31:0] rd_data_ex_mem,
+input [4:0] rd_mem_wb,
+input [31:0] rd_data_mem_wb,
+input [4:0] rd_wbbuf,
+input [31:0] rd_data_wbbuf,
 output [31:0] alu_out,
 output B_result,
 output [6:0] opcode_o,
@@ -63,6 +71,10 @@ wire [31:0] alu_jalr;
 reg [31:0] alu_r;
 reg B_result_r;
 
+reg [31:0] op_1;//操作数1
+reg [31:0] op_2;//操作数2
+// reg [31:0] op_3;//操作数3，用于分支跳转
+
 assign alu_out = alu_r;
 assign B_result = B_result_r;
 
@@ -70,52 +82,76 @@ assign opcode_o = opcode;
 assign funct3_o = funct3;
 assign funct7_o = funct7;
 assign rd_o = rd;
-assign rs2_data_o = rs2_data;
+//assign rs2_data_o = rs2_data;
+assign rs2_data_o = op_2;
 
-// reg [31:0] op_1;//操作数1
-// reg [31:0] op_2;//操作数2
-// reg [31:0] op_3;//操作数3，用于分支跳转
 
+
+//rs1_data的旁路判决
+always @(*) begin
+    if(rs1==rd_ex_mem)begin
+        op_1 <= rd_data_ex_mem;
+    end else if(rs1==rd_data_mem_wb)begin
+        op_1 <= rd_data_mem_wb;
+    end else if(rs1==rd_wbbuf)begin
+        op_1 <= rd_data_wbbuf;
+    end else begin
+        op_1 <= rs1_data;
+    end
+end
+
+//rs2_data的旁路判决
+always @(*) begin
+    if(rs2==rd_ex_mem)begin
+        op_2 <= rd_data_ex_mem;
+    end else if(rs2==rd_data_mem_wb)begin
+        op_2 <= rd_data_mem_wb;
+    end else if(rs2==rd_wbbuf)begin
+        op_2 <= rd_data_wbbuf;
+    end else begin
+        op_2 <= rs2_data;
+    end
+end
 
 //                  A           L           U                  //////////////////////////////////////////////////////////////////////////
 //type_R
-assign alu_add = rs1_data + rs2_data;
-assign alu_sub = rs1_data - rs2_data;
-assign alu_xor = rs1_data ^ rs2_data;
-assign alu_or = rs1_data | rs2_data;
-assign alu_and = rs1_data & rs2_data;
-assign alu_sll = rs1_data << rs2_data[4:0];
-assign alu_srl = rs1_data >> rs2_data[4:0];
-assign alu_sra = (rs1_data >> rs2_data[4:0]) | ({32{rs1_data[31]}} & (~(32'hFFFFFFFF >> rs2_data[4:0])));//msb_extend
-assign alu_slt = (rs1_data[31] != rs2_data[31]) ? rs1_data[31] : (rs1_data < rs2_data);
-assign alu_sltu = (rs1_data < rs2_data) ? 1 : 0;
+assign alu_add = op_1 + op_2;
+assign alu_sub = op_1 - op_2;
+assign alu_xor = op_1 ^ op_2;
+assign alu_or = op_1 | op_2;
+assign alu_and = op_1 & op_2;
+assign alu_sll = op_1 << op_2[4:0];
+assign alu_srl = op_1 >> op_2[4:0];
+assign alu_sra = (op_1 >> op_2[4:0]) | ({32{op_1[31]}} & (~(32'hFFFFFFFF >> op_2[4:0])));//msb_extend
+assign alu_slt = (op_1[31] != op_2[31]) ? op_1[31] : (op_1 < op_2);
+assign alu_sltu = (op_1 < op_2) ? 1 : 0;
 
 //type_I
-assign alu_addi = rs1_data + imm_ext;
-assign alu_xori = rs1_data ^ imm_ext;
-assign alu_ori = rs1_data | imm_ext;
-assign alu_andi = rs1_data & imm_ext;
-assign alu_slli = rs1_data << imm_ext[4:0];
-assign alu_srli = rs1_data >> imm_ext[4:0];
-assign alu_srai = (rs1_data >> imm_ext[4:0]) | ({32{rs1_data[31]}} & (~(32'hFFFFFFFF >> imm_ext[4:0])));//msb_extend
-assign alu_slti = (rs1_data[31] != imm_ext[31]) ? rs1_data[31] : (rs1_data < imm_ext);
-assign alu_sltiu = (rs1_data < imm_ext) ? 1 : 0;
+assign alu_addi = op_1 + imm_ext;
+assign alu_xori = op_1 ^ imm_ext;
+assign alu_ori = op_1 | imm_ext;
+assign alu_andi = op_1 & imm_ext;
+assign alu_slli = op_1 << imm_ext[4:0];
+assign alu_srli = op_1 >> imm_ext[4:0];
+assign alu_srai = (op_1 >> imm_ext[4:0]) | ({32{op_1[31]}} & (~(32'hFFFFFFFF >> imm_ext[4:0])));//msb_extend
+assign alu_slti = (op_1[31] != imm_ext[31]) ? op_1[31] : (op_1 < imm_ext);
+assign alu_sltiu = (op_1 < imm_ext) ? 1 : 0;
 
-assign alu_lb = rs1_data + imm_ext;
-assign alu_lh = rs1_data + imm_ext;
-assign alu_lw = rs1_data + imm_ext;
-assign alu_lbu = rs1_data + imm_ext;
-assign alu_lhu = rs1_data + imm_ext;
+assign alu_lb = op_1 + imm_ext;
+assign alu_lh = op_1 + imm_ext;
+assign alu_lw = op_1 + imm_ext;
+assign alu_lbu = op_1 + imm_ext;
+assign alu_lhu = op_1 + imm_ext;
 
 //type_S
-assign alu_sb = rs1_data + imm_ext;
-assign alu_sh = rs1_data + imm_ext;
-assign alu_sw = rs1_data + imm_ext;
+assign alu_sb = op_1 + imm_ext;
+assign alu_sh = op_1 + imm_ext;
+assign alu_sw = op_1 + imm_ext;
 
 //type_B
-assign alu_eq = (rs1_data == rs2_data) ? 1 : 0;//alu相等判决
-assign alu_comp = (rs1_data[31] != imm_ext[31]) ? rs1_data[31] : (rs1_data < imm_ext);//有符号比较，小于输出1，大于输出0
-assign alu_comp_u = (rs1_data < imm_ext) ? 1 : 0;//无符号比较，小于输出1，大于输出0
+assign alu_eq = (op_1 == op_2) ? 1 : 0;//alu相等判决
+assign alu_comp = (op_1[31] != imm_ext[31]) ? op_1[31] : (op_1 < imm_ext);//有符号比较，小于输出1，大于输出0
+assign alu_comp_u = (op_1 < imm_ext) ? 1 : 0;//无符号比较，小于输出1，大于输出0
 assign alu_B = PC + (imm_ext << 2);
 
 //type_U
@@ -124,7 +160,7 @@ assign alu_auipc = PC + (imm_ext << 12);
 
 //type_J
 assign alu_jal = PC + (imm_ext << 2);
-assign alu_jalr = PC + rs1_data + (imm_ext << 2);
+assign alu_jalr = PC + op_1 + (imm_ext << 2);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //                   ALUop                     ///////////////////////////////////////////////////////////////////////////////////////////////

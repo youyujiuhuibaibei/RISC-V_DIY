@@ -16,7 +16,8 @@ output reg [6:0] opcode_o,
 output reg [2:0] funct3_o,
 output reg [6:0] funct7_o,
 output reg [4:0] rd_o,
-output reg [31:0] rs2_data_o
+output reg [31:0] rs2_data_o,
+output reg [31:0] rd_data
 );
 
 always @(posedge clk or negedge rst_n) begin
@@ -28,6 +29,7 @@ always @(posedge clk or negedge rst_n) begin
         funct7_o <= `funct7_nop;
         rd_o <= 0;
         rs2_data_o <= 0;
+        rd_data <= 0;
     end else begin
         alu_out_o <= alu_out_i;
         B_result_o <= B_result_i;
@@ -36,6 +38,7 @@ always @(posedge clk or negedge rst_n) begin
         funct7_o <= funct7_i;
         rd_o <= rd_i;
         rs2_data_o <= rs2_data_i;
+        rd_data <= alu_out_i;//用于旁路
     end
 end
 

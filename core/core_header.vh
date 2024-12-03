@@ -12,3 +12,4 @@
 `include "mem_wb.v"
 `include "wbu.v"
 `include "regs.v"
+`include "wbu_o_buf.v"
