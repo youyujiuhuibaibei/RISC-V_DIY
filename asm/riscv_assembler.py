@@ -111,10 +111,10 @@ def assemble_line(line):
         imm = int(parts[2], 0)
         imm_bin = imm_to_bin(imm, 21)
         imm_20 = imm_bin[0]
-        imm_10_1 = imm_bin[1:11]
-        imm_11 = imm_bin[11]
-        imm_19_12 = imm_bin[12:20]
-        return f"{imm_20}{imm_19_12}{imm_11}{imm_10_1}{rd:05b}{opcode}"
+        imm_10_1 = imm_bin[10:20]
+        imm_11 = imm_bin[9]
+        imm_19_12 = imm_bin[1:9]
+        return f"{imm_20}{imm_10_1}{imm_11}{imm_19_12}{rd:05b}{opcode}"
 
     elif inst == "nop":  # 特殊指令
         return "00000000000000000000000000010011"  # addi x0, x0, 0

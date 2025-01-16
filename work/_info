@@ -1,6 +1,7 @@
 m255
 K4
 z2
+!s11f vlog 2020.4 2020.10, Oct 13 2020
 13
 !s112 1.1
 !i10d 8192
@@ -8,3 +9,327 @@ z2
 !i10f 100
 cModel Technology
 dD:/Program Files/mentor/examples
+vcpu_top
+Z0 !s110 1737011764
+!i10b 1
+!s100 KcF0La_i6KWonl9H@RzC43
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I`IV?_AAVaBUPKj<NLCCd60
+Z2 dd:/work/diycore
+w1733233890
+8d:\work\diycore\core\cpu_top.v
+Fd:\work\diycore\core\cpu_top.v
+!i122 4
+L0 17 275
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+Z4 OL;L;2020.4;71
+r1
+!s85 0
+31
+Z5 !s108 1737011764.000000
+Z6 !s107 d:\work\diycore\core\wbu_o_buf.v|d:\work\diycore\core\regs.v|d:\work\diycore\core\wbu.v|d:\work\diycore\core\mem_wb.v|d:\work\diycore\core\memu.v|d:\work\diycore\core\ex_mem.v|d:\work\diycore\core\exu.v|d:\work\diycore\core\id_ex.v|d:\work\diycore\core\idu.v|d:\work\diycore\core\if_id.v|d:\work\diycore\core\ifu.v|d:\work\diycore\core\Inst_mem.v|d:\work\diycore\core\Data_mem.v|d:\work\diycore\core\..\define.v|d:\work\diycore\core\core_header.vh|d:\work\diycore\core\cpu_top.v|
+Z7 !s90 -nologo|-work|work|d:\work\diycore\core\cpu_top.v|
+!i113 0
+Z8 o-nologo -work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z9 tCvgOpt 0
+vData_mem
+R0
+!i10b 1
+!s100 D@@VR8hIW`2GKa;J89[6P3
+R1
+I[:J90@aF5OFlh5MY9kCLm2
+R2
+w1733149850
+8d:\work\diycore\core\Data_mem.v
+Fd:\work\diycore\core\Data_mem.v
+!i122 4
+L0 3 44
+R3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 0
+R8
+R9
+n@data_mem
+vex_mem
+R0
+!i10b 1
+!s100 afFTXdO_9N4PF@2Lh]3iP0
+R1
+If<8Q[1VSdm3Ze>W5JY_jE2
+R2
+w1733227597
+8d:\work\diycore\core\ex_mem.v
+Fd:\work\diycore\core\ex_mem.v
+!i122 4
+L0 3 43
+R3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 0
+R8
+R9
+vexu
+!s110 1737017585
+!i10b 1
+!s100 D7UPlOnX42>PCLF^i4JRn1
+R1
+IDf1KKjP[McNkj1J<?MW0F2
+R2
+w1737017585
+8d:\work\diycore\core\exu.v
+Fd:\work\diycore\core\exu.v
+!i122 17
+L0 3 271
+R3
+R4
+r1
+!s85 0
+31
+!s108 1737017585.000000
+!s107 d:\work\diycore\core\..\define.v|d:\work\diycore\core\exu.v|
+!s90 -nologo|-work|work|d:\work\diycore\core\exu.v|
+!i113 0
+R8
+R9
+vid_ex
+R0
+!i10b 1
+!s100 [HQLekGC6C[gPfnWQi=G:1
+R1
+Ij23AHWEm>09:[GA73S0a70
+R2
+w1733227979
+8d:\work\diycore\core\id_ex.v
+Fd:\work\diycore\core\id_ex.v
+!i122 4
+L0 3 52
+R3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 0
+R8
+R9
+vidu
+R0
+!i10b 1
+!s100 :F3CYNlU8ZGzRZADdj?;O0
+R1
+IeWRK1VNHDcBDe:@h9JJz;1
+R2
+w1732697254
+8d:\work\diycore\core\idu.v
+Fd:\work\diycore\core\idu.v
+!i122 4
+L0 3 85
+R3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 0
+R8
+R9
+vif_id
+!s110 1737012335
+!i10b 1
+!s100 [C_GD2k9aHnY1`c@1<h=:1
+R1
+I?[oU8BHc845bHQENYMXcj0
+R2
+w1732759879
+8d:\work\diycore\core\if_id.v
+Fd:\work\diycore\core\if_id.v
+!i122 7
+Z10 L0 3 32
+R3
+R4
+r1
+!s85 0
+31
+!s108 1737012335.000000
+!s107 d:\work\diycore\core\..\define.v|d:\work\diycore\core\if_id.v|
+!s90 -nologo|-work|work|d:\work\diycore\core\if_id.v|
+!i113 0
+R8
+R9
+vifu
+!s110 1737017529
+!i10b 1
+!s100 XJE`niD:Aj=QRRe4F_Om]3
+R1
+IXMOTb@JKcNWFG5@iX61oj2
+R2
+w1737017529
+8d:\work\diycore\core\ifu.v
+Fd:\work\diycore\core\ifu.v
+!i122 14
+L0 3 57
+R3
+R4
+r1
+!s85 0
+31
+!s108 1737017529.000000
+!s107 d:\work\diycore\core\..\define.v|d:\work\diycore\core\ifu.v|
+!s90 -nologo|-work|work|d:\work\diycore\core\ifu.v|
+!i113 0
+R8
+R9
+vInst_mem
+R0
+!i10b 1
+!s100 6_Tnn6>b1YKGJVmB@HBAD0
+R1
+IkYb:oJAJ^zBW2NZ?A_DG;2
+R2
+w1732867196
+8d:\work\diycore\core\Inst_mem.v
+Fd:\work\diycore\core\Inst_mem.v
+!i122 4
+R10
+R3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 0
+R8
+R9
+n@inst_mem
+vmem_wb
+R0
+!i10b 1
+!s100 K^mCA3i@>gkb1Ej9dbDUX3
+R1
+IF;OhUNTJckN^KMm]RL<e?0
+R2
+w1733227662
+8d:\work\diycore\core\mem_wb.v
+Fd:\work\diycore\core\mem_wb.v
+!i122 4
+Z11 L0 3 39
+R3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 0
+R8
+R9
+vmemu
+R0
+!i10b 1
+!s100 bznUC`Pkg@^BzW2z_;D3>2
+R1
+I08[4IcMii6f8lHHGn?Fcb3
+R2
+w1733148380
+8d:\work\diycore\core\memu.v
+Fd:\work\diycore\core\memu.v
+!i122 4
+L0 3 82
+R3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 0
+R8
+R9
+vregs
+R0
+!i10b 1
+!s100 cNcCWU5D;>WT2Q5Yf@9a;1
+R1
+IcKUUgB3E95GNXBCUk48Tn1
+R2
+w1732094444
+8d:\work\diycore\core\regs.v
+Fd:\work\diycore\core\regs.v
+!i122 4
+L0 3 34
+R3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 0
+R8
+R9
+vwbu
+!s110 1737017535
+!i10b 1
+!s100 4R;7T>OnRP8I0=JgeNWJ>0
+R1
+IFdi;WNmY8hV7YPAM<LfoY3
+R2
+w1733144223
+8d:\work\diycore\core\wbu.v
+Fd:\work\diycore\core\wbu.v
+!i122 15
+R11
+R3
+R4
+r1
+!s85 0
+31
+!s108 1737017535.000000
+!s107 d:\work\diycore\core\..\define.v|d:\work\diycore\core\wbu.v|
+!s90 -nologo|-work|work|d:\work\diycore\core\wbu.v|
+!i113 0
+R8
+R9
+vwbu_o_buf
+R0
+!i10b 1
+!s100 ZgOZbdzO0kPe<n?P1K7Nz1
+R1
+I^VWfc0Z;?eAfFXbAVY]`=3
+R2
+w1733233375
+8d:\work\diycore\core\wbu_o_buf.v
+Fd:\work\diycore\core\wbu_o_buf.v
+!i122 4
+L0 3 20
+R3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 0
+R8
+R9
